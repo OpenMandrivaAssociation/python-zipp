@@ -36,6 +36,9 @@ BuildRequires:  python3dist(unittest2)
 Requires:       python3dist(pathlib2)
 Requires:       python3dist(unittest2)
 
+%description
+A pathlib-compatible Zipfile object wrapper. A backport of the Path object.
+
 %if %{with docs}
 %package -n python-%{pypi_name}-doc
 Summary:        zipp documentation
