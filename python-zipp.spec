@@ -28,13 +28,13 @@ BuildRequires:  python3dist(more-itertools)
 BuildRequires:  python3dist(pathlib2)
 BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(setuptools-scm)
-BuildRequires:  python3dist(unittest2)
+BuildRequires:  python-unittest2
 
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 #Requires:       python3dist(contextlib2)
 Requires:       python3dist(pathlib2)
-Requires:       python3dist(unittest2)
+Requires:       python-unittest2
 
 %description
 A pathlib-compatible Zipfile object wrapper. A backport of the Path object.
