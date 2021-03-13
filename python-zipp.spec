@@ -28,6 +28,7 @@ BuildRequires:  python3dist(more-itertools)
 BuildRequires:  python3dist(pathlib2)
 BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(setuptools-scm)
+BuildRequires:  python3dist(pip)
 BuildRequires:  python-unittest2
 
 %{?python_provide:%python_provide python3-%{pypi_name}}
