@@ -7,7 +7,7 @@
 
 Name:           python-%{pypi_name}
 Version:        3.4.1
-Release:        2
+Release:        3
 Summary:        Backport of pathlib-compatible object wrapper for zip files
 Group:          Development/Python
 License:        MIT
