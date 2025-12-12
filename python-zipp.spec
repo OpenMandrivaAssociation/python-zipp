@@ -7,7 +7,7 @@
 %bcond_with test
 
 Name:		python-%{pypi_name}
-Version:	3.22.0
+Version:	3.23.0
 Release:	1
 Summary:	A pathlib-compatible Zipfile object wrapper
 Group:		Development/Python
