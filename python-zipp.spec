@@ -1,21 +1,21 @@
-# Created by pyp2rpm-3.3.2
-%global pypi_name zipp
+%define module zipp
 
 # disabled due to missing packages to build docs
-%bcond_with docs
+%bcond docs 0
 # disabled due to missing packages required for tests
-%bcond_with test
+%bcond test 0
 
-Name:		python-%{pypi_name}
-Version:	3.23.0
+Name:		python-zipp
+Version:	3.23.1
 Release:	1
 Summary:	A pathlib-compatible Zipfile object wrapper
 Group:		Development/Python
 License:	MIT
 URL:		https://github.com/jaraco/zipp
-Source0:	https://files.pythonhosted.org/packages/source/z/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
-BuildArch:	noarch
+Source0:	%{URL}/archive/v%{version}/%{name}-%{version}.tar.gz
 
+BuildSystem:	python
+BuildArch:	noarch
 BuildRequires:	pkgconfig(python)
 BuildRequires:	python%{py_ver}dist(pip)
 BuildRequires:	python%{py_ver}dist(setuptools)
@@ -43,28 +43,19 @@ A pathlib-compatible Zipfile object wrapper.
 Official backport of the standard library Path object.
 
 %if %{with docs}
-%package -n python-%{pypi_name}-doc
+%package -n python-%{module}-doc
 Summary:	%{name} documentation
 
-%description -n python-%{pypi_name}-doc
+%description -n python-%{module}-doc
 Documentation for %{name}
 %endif
 
-%prep
-%autosetup -n %{pypi_name}-%{version}
-
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
-
-# remove remote gitbadge image urls from readme
-sed -i '1,22d;' README.rst
-
+%prep -a
 # jaraco.itertools and func_timeout are not packaged yet
 sed -i "/import jaraco.itertools/d" tests/test_path.py
 
-
-%build
-%py_build
+%build -p
+export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
 
 %if %{with docs}
 # generate html docs
@@ -73,23 +64,18 @@ PYTHONPATH=${PWD} sphinx-build docs html
 rm -rf html/.{doctrees,buildinfo}
 %endif
 
-%install
-%py_install
-
 %if %{with test}
 %check
 %{__python} -m pytest
 %endif
 
 %files
-%{python_sitelib}/%{pypi_name}
-%{python_sitelib}/%{pypi_name}-%{version}.dist-info
-%license LICENSE
 %doc README.rst
+%{python_sitelib}/%{module}
+%{python_sitelib}/%{module}-%{version}.dist-info
 
 %if %{with docs}
-%files -n python-%{pypi_name}-doc
-%doc html
+%files -n python-%{module}-doc
 %doc README.rst
-%license LICENSE
+%doc html
 %endif
