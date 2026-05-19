@@ -6,7 +6,7 @@
 %bcond test 0
 
 Name:		python-zipp
-Version:	3.23.1
+Version:	4.1.0
 Release:	1
 Summary:	A pathlib-compatible Zipfile object wrapper
 Group:		Development/Python
@@ -17,25 +17,25 @@ Source0:	%{URL}/archive/v%{version}/%{name}-%{version}.tar.gz
 BuildSystem:	python
 BuildArch:	noarch
 BuildRequires:	pkgconfig(python)
-BuildRequires:	python%{py_ver}dist(pip)
-BuildRequires:	python%{py_ver}dist(setuptools)
-BuildRequires:	python%{py_ver}dist(setuptools-scm)
-BuildRequires:	python%{py_ver}dist(wheel)
+BuildRequires:	python%{pyver}dist(pip)
+BuildRequires:	python%{pyver}dist(setuptools)
+BuildRequires:	python%{pyver}dist(setuptools-scm)
+BuildRequires:	python%{pyver}dist(wheel)
 %if %{with docs}
-BuildRequires:	python%{py_ver}dist(contextlib2)
+BuildRequires:	python%{pyver}dist(contextlib2)
 # Not packaged yet:
-#BuildRequires:	python%%{py_ver}dist(jaraco.packaging)
-BuildRequires:	python%{py_ver}dist(rst.linker)
-BuildRequires:	python%{py_ver}dist(sphinx)
-BuildRequires:	python%{py_ver}dist(furo)
+#BuildRequires:	python%%{pyver}dist(jaraco.packaging)
+BuildRequires:	python%{pyver}dist(rst.linker)
+BuildRequires:	python%{pyver}dist(sphinx)
+BuildRequires:	python%{pyver}dist(furo)
 %endif
 %if %{with test}
-BuildRequires:	python%{py_ver}dist(pytest)
-BuildRequires:	python%{py_ver}dist(more-itertools)
-BuildRequires:  python%{py_ver}dist(jaraco.functools)
+BuildRequires:	python%{pyver}dist(pytest)
+BuildRequires:	python%{pyver}dist(more-itertools)
+BuildRequires:	python%{pyver}dist(jaraco.functools)
 # Not packaged yet:
-#BuildRequires:  python%%{py_ver}dist(jaraco.itertools)
-#BuildRequires:  python%%{py_ver}dist(jaraco.test)
+#BuildRequires:  python%%{pyver}dist(jaraco.itertools)
+#BuildRequires:  python%%{pyver}dist(jaraco.test)
 %endif
 
 %description
@@ -66,7 +66,9 @@ rm -rf html/.{doctrees,buildinfo}
 
 %if %{with test}
 %check
-%{__python} -m pytest
+export CI=true
+export PYTHONPATH="%{buildroot}%{python_sitelib}:${PWD}"
+pytest
 %endif
 
 %files
