@@ -7,7 +7,7 @@
 
 Name:		python-zipp
 Version:	4.1.0
-Release:	1
+Release:	2
 Summary:	A pathlib-compatible Zipfile object wrapper
 Group:		Development/Python
 License:	MIT
