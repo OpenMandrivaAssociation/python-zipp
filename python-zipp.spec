@@ -7,7 +7,7 @@
 
 Name:		python-zipp
 Version:	4.1.0
-Release:	2
+Release:	3
 Summary:	A pathlib-compatible Zipfile object wrapper
 Group:		Development/Python
 License:	MIT
@@ -16,7 +16,7 @@ Source0:	%{URL}/archive/v%{version}/%{name}-%{version}.tar.gz
 
 BuildSystem:	python
 BuildArch:	noarch
-BuildRequires:	pkgconfig(python)
+BuildRequires:	pkgconfig(python3)
 BuildRequires:	python%{pyver}dist(pip)
 BuildRequires:	python%{pyver}dist(setuptools)
 BuildRequires:	python%{pyver}dist(setuptools-scm)
